@@ -11,8 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [CommonModule, RouterModule, ReactiveFormsModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div id="login-container" class="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
-      <div id="login-card" class="w-full max-w-md bg-white rounded-2xl border border-slate-200/80 shadow-sm p-8">
+    <div id="login-container" class="min-h-screen flex items-center justify-center bg-slate-50 px-3 sm:px-4 py-6 sm:py-12">
+      <div id="login-card" class="w-full max-w-md bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5 sm:p-8">
         
         <!-- Header -->
         <div class="text-center mb-8">

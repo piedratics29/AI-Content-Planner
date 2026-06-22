@@ -11,19 +11,19 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule, MatIconModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div id="dashboard-wrapper" class="p-4 md:p-8 space-y-6 max-w-7xl mx-auto animate-fade-in font-sans">
+    <div id="dashboard-wrapper" class="p-3 sm:p-5 lg:p-8 space-y-5 sm:space-y-6 max-w-7xl mx-auto animate-fade-in font-sans">
       
       <!-- Welcome Header -->
-      <div id="welcome-header" class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/50 pb-5">
-        <div>
-          <h1 class="text-2xl md:text-3.5xl font-display font-semibold text-slate-900 tracking-tight">Content Pipeline Hub</h1>
+      <div id="welcome-header" class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200/50 pb-5">
+        <div class="min-w-0">
+          <h1 class="text-2xl sm:text-3xl lg:text-3.5xl font-display font-semibold text-slate-900 tracking-tight">Content Pipeline Hub</h1>
           <p class="text-sm text-slate-500 mt-1 font-sans">Draft, schedule, and orchestrate all digital marketing content seamlessly. Empowered by server-side Gemini AI.</p>
         </div>
-        <div>
+        <div class="shrink-0">
           <button 
             id="btn-create-modal"
             (click)="openCreateModal()" 
-            class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium font-display rounded-xl text-sm shadow-md shadow-slate-950/15 group transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            class="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium font-display rounded-xl text-sm whitespace-nowrap shadow-md shadow-slate-950/15 group transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             <mat-icon class="scale-90 transition-transform group-hover:rotate-90">add</mat-icon>
             <span>Draft New Post</span>
@@ -32,10 +32,10 @@ import { RouterModule } from '@angular/router';
       </div>
 
       <!-- Quick Stats Cards Section -->
-      <div id="stats-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 select-none">
+      <div id="stats-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 select-none">
         
         <!-- Total Plans -->
-        <div class="p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="p-4 sm:p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest leading-none">Total Assets</span>
             <span class="w-8.5 h-8.5 rounded-xl bg-slate-50 text-slate-700 flex items-center justify-center border border-slate-100">
@@ -47,7 +47,7 @@ import { RouterModule } from '@angular/router';
         </div>
 
         <!-- Drafts -->
-        <div class="p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="p-4 sm:p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-semibold text-amber-600 uppercase tracking-widest leading-none">Drafts</span>
             <span class="w-8.5 h-8.5 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100/50">
@@ -59,7 +59,7 @@ import { RouterModule } from '@angular/router';
         </div>
 
         <!-- Scheduled -->
-        <div class="p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="p-4 sm:p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-semibold text-indigo-600 uppercase tracking-widest leading-none">Scheduled</span>
             <span class="w-8.5 h-8.5 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100/50">
@@ -71,7 +71,7 @@ import { RouterModule } from '@angular/router';
         </div>
 
         <!-- Published -->
-        <div class="p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
+        <div class="p-4 sm:p-5 bg-white border border-slate-200/50 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-semibold text-emerald-600 uppercase tracking-widest leading-none">Published</span>
             <span class="w-8.5 h-8.5 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100/50">
@@ -84,7 +84,7 @@ import { RouterModule } from '@angular/router';
       </div>
 
       <!-- Controls: Filters and Search (Using Pure Reactive Signal Binding) -->
-      <div id="filters-container" class="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-xs flex flex-col md:flex-row gap-4 items-stretch md:items-center">
+      <div id="filters-container" class="bg-white border border-slate-200/60 rounded-2xl p-4 sm:p-5 shadow-xs flex flex-col md:flex-row gap-3 sm:gap-4 items-stretch md:items-center">
         <!-- Search -->
         <div class="flex-1 relative">
           <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
@@ -135,14 +135,14 @@ import { RouterModule } from '@angular/router';
       <div id="content-display-panel" class="bg-white border border-slate-200/50 rounded-2xl shadow-xs overflow-hidden">
         
         <!-- Table Header / Title Actions -->
-        <div class="px-6 py-4.5 border-b border-slate-200/50 flex justify-between items-center bg-slate-50/40">
+        <div class="px-4 sm:px-6 py-4 border-b border-slate-200/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 bg-slate-50/40">
           <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">Pipeline Schedule Items</h2>
           <span class="text-xs text-slate-400 font-medium font-mono">Found {{ filteredPlans().length }} assets</span>
         </div>
 
         @if (filteredPlans().length === 0) {
           <!-- Empty State -->
-          <div class="p-16 text-center text-slate-500 select-none animate-fade-in bg-white">
+          <div class="p-8 sm:p-16 text-center text-slate-500 select-none animate-fade-in bg-white">
             <mat-icon class="text-slate-200 scale-125 mb-3 h-10 w-10 flex items-center justify-center mx-auto">space_dashboard</mat-icon>
             <h3 class="text-sm font-display font-semibold text-slate-700">No scheduled content plans found</h3>
             <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Formulate a new plan or adjust your query conditions above to inspect alternate entries.</p>
@@ -151,7 +151,7 @@ import { RouterModule } from '@angular/router';
           <!-- Table/List -->
           <div class="divide-y divide-slate-100 divide-dashed bg-white">
             @for (plan of filteredPlans(); track plan.id) {
-              <div class="p-5.5 transition-colors hover:bg-slate-50/60 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+              <div class="p-4 sm:p-5.5 transition-colors hover:bg-slate-50/60 flex flex-col xl:flex-row xl:items-center justify-between gap-5 sm:gap-6">
                 
                 <!-- Info Section -->
                 <div class="flex-1 min-w-0 space-y-2">
@@ -189,7 +189,7 @@ import { RouterModule } from '@angular/router';
                     {{ plan.description }}
                   </p>
 
-                  <div class="flex items-center gap-4 text-[11px] font-mono text-slate-400">
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-[11px] font-mono text-slate-400">
                     <span class="flex items-center gap-1 text-slate-500">
                       <mat-icon class="text-xs text-slate-400 scale-90">calendar_today</mat-icon>
                       Schedule: {{ plan.scheduleDate }}
@@ -204,10 +204,10 @@ import { RouterModule } from '@angular/router';
                 </div>
 
                 <!-- Fast CTA Action Options -->
-                <div class="flex shrink-0 gap-2 items-center flex-wrap select-none">
+                <div class="flex w-full xl:w-auto shrink-0 gap-2 items-center select-none">
                   <button 
                     (click)="openDetailModal(plan)" 
-                    class="p-2 px-3 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 text-slate-700 font-medium rounded-xl text-xs flex items-center justify-center gap-1 transition-all cursor-pointer h-8.5"
+                    class="flex-1 xl:flex-none p-2 px-3 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 text-slate-700 font-medium rounded-xl text-xs flex items-center justify-center gap-1 transition-all cursor-pointer h-8.5"
                     title="View Details"
                   >
                     <mat-icon class="text-xs scale-90">visibility</mat-icon>
@@ -215,7 +215,7 @@ import { RouterModule } from '@angular/router';
                   </button>
                   <button 
                     (click)="openEditModal(plan)" 
-                    class="p-2 px-3 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 text-slate-700 font-medium rounded-xl text-xs flex items-center justify-center gap-1 transition-all cursor-pointer h-8.5"
+                    class="flex-1 xl:flex-none p-2 px-3 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 text-slate-700 font-medium rounded-xl text-xs flex items-center justify-center gap-1 transition-all cursor-pointer h-8.5"
                     title="Edit Plan"
                   >
                     <mat-icon class="text-xs scale-90">edit</mat-icon>
@@ -238,12 +238,12 @@ import { RouterModule } from '@angular/router';
 
       <!-- MASTER MODAL: CREATE AND EDIT CONTENT PLAN -->
       @if (isFormOpen()) {
-        <div class="fixed inset-0 bg-slate-950/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto animate-fade-in select-none">
-          <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden border border-slate-200/60 shadow-2xl animate-scale-up">
+        <div class="fixed inset-0 bg-slate-950/30 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 z-50 overflow-y-auto animate-fade-in select-none">
+          <div class="bg-white rounded-xl sm:rounded-2xl w-full max-w-4xl max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] flex flex-col overflow-hidden border border-slate-200/60 shadow-2xl animate-scale-up">
             
             <!-- Modal Header -->
-            <div class="px-6 py-4.5 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between">
-              <div>
+            <div class="px-4 sm:px-6 py-4 bg-slate-50/50 border-b border-slate-100 flex items-start justify-between gap-3">
+              <div class="min-w-0">
                 <h3 class="text-base font-display font-semibold text-slate-900 tracking-tight">
                   {{ isEditMode() ? 'Edit Scheduled Assignment' : 'Draft New Publication Concept' }}
                 </h3>
@@ -255,7 +255,7 @@ import { RouterModule } from '@angular/router';
             </div>
 
             <!-- Modal Content (Scrollable Grid Split: Left Form, Right AI Panel) -->
-            <div class="flex-1 overflow-y-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white">
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 bg-white">
               
               <!-- Form Block (7 Columns) -->
               <form [formGroup]="planForm" class="lg:col-span-7 space-y-4">
@@ -368,7 +368,7 @@ import { RouterModule } from '@angular/router';
               </form>
 
               <!-- Gemini AI Content Assistant Panel (5 Columns - No ngModel!) -->
-              <div class="lg:col-span-5 bg-slate-50/50 border border-slate-200/50 rounded-2xl p-5 flex flex-col justify-between">
+              <div class="lg:col-span-5 bg-slate-50/50 border border-slate-200/50 rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
                 <div class="space-y-4">
                   <div class="flex items-center gap-2.5 mb-3 select-none">
                     <span class="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-md">
@@ -410,7 +410,7 @@ import { RouterModule } from '@angular/router';
                   </div>
 
                   <!-- Tone Selector -->
-                  <div class="grid grid-cols-2 gap-3 pb-1">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-1">
                     <div>
                       <span class="block text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1.5 select-none font-mono">Tone Choice</span>
                       <select 
@@ -484,9 +484,9 @@ import { RouterModule } from '@angular/router';
             </div>
 
             <!-- Modal Footer Controls -->
-            <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-150 flex items-center justify-between shrink-0">
+            <div class="px-4 sm:px-6 py-4 bg-slate-50/50 border-t border-slate-150 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
               <span class="text-xs text-slate-400 font-medium select-none font-sans">Verify post credentials prior to schedule dispatch.</span>
-              <div class="flex gap-2">
+              <div class="grid grid-cols-2 sm:flex gap-2 w-full sm:w-auto">
                 <button 
                   id="btn-cancel-modal"
                   type="button" 
@@ -509,12 +509,12 @@ import { RouterModule } from '@angular/router';
 
       <!-- MASTER MODAL: READ/DETAILS DETAIL MODAL -->
       @if (isDetailOpen() && activeDetailPlan()) {
-        <div class="fixed inset-0 bg-slate-950/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in select-none">
-          <div class="bg-white rounded-2xl w-full max-w-2xl border border-slate-200/60 shadow-2xl overflow-hidden animate-scale-up flex flex-col max-h-[85vh]">
+        <div class="fixed inset-0 bg-slate-950/30 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 z-50 animate-fade-in select-none">
+          <div class="bg-white rounded-xl sm:rounded-2xl w-full max-w-2xl border border-slate-200/60 shadow-2xl overflow-hidden animate-scale-up flex flex-col max-h-[calc(100dvh-1rem)] sm:max-h-[85vh]">
             
             <!-- Detail Header -->
-            <div class="px-6 py-4.5 border-b border-slate-200/50 bg-slate-50/40 flex justify-between items-start shrink-0">
-              <div>
+            <div class="px-4 sm:px-6 py-4 border-b border-slate-200/50 bg-slate-50/40 flex justify-between items-start gap-3 shrink-0">
+              <div class="min-w-0">
                 <div class="flex items-center gap-1.5 mb-1.5 flex-wrap">
                   <span class="px-2 py-0.5 text-[9px] font-bold text-slate-600 bg-slate-100 rounded-lg uppercase font-mono border border-slate-200/40">{{ activeDetailPlan()!.platform }}</span>
                   <span class="px-2 py-0.5 text-[9px] font-bold text-slate-500 bg-slate-100/60 rounded-lg font-sans">{{ activeDetailPlan()!.category }}</span>
@@ -533,10 +533,10 @@ import { RouterModule } from '@angular/router';
             </div>
 
             <!-- Detail Content Body -->
-            <div class="p-6 overflow-y-auto space-y-5 flex-1 text-sm bg-white font-sans">
+            <div class="p-4 sm:p-6 overflow-y-auto space-y-5 flex-1 text-sm bg-white font-sans">
               
               <!-- Setup Info -->
-              <div class="grid grid-cols-2 gap-4 bg-slate-50/50 p-3.5 rounded-xl border border-slate-200/50 select-none">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 bg-slate-50/50 p-3.5 rounded-xl border border-slate-200/50 select-none">
                 <div>
                   <span class="block text-[9px] uppercase font-bold text-slate-400 leading-none mb-1 font-mono tracking-wider">Scheduled Date</span>
                   <span class="text-slate-800 font-semibold font-mono text-xs">{{ activeDetailPlan()!.scheduleDate }}</span>
@@ -576,16 +576,16 @@ import { RouterModule } from '@angular/router';
             </div>
 
             <!-- Detail Footer controls -->
-            <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-200/50 shrink-0 flex justify-end gap-2">
+            <div class="px-4 sm:px-6 py-4 bg-slate-50/50 border-t border-slate-200/50 shrink-0 flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
               <button 
                 type="button" 
                 (click)="closeDetailModal()" 
-                class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-colors cursor-pointer font-sans"
+                class="w-full sm:w-auto px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition-colors cursor-pointer font-sans"
               >Good, close</button>
               <button 
                 type="button" 
                 (click)="promoteDetailToEdit()" 
-                class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition-colors cursor-pointer shadow-xs font-sans font-medium"
+                class="w-full sm:w-auto px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl text-xs transition-colors cursor-pointer shadow-xs font-sans font-medium"
               >Edit Schedule Plan</button>
             </div>
 

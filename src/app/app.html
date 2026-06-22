@@ -2,7 +2,7 @@
   <div id="app-shell" class="min-h-screen flex bg-slate-50 text-slate-800 font-sans antialiased">
     
     <!-- DESKTOP SIDEBAR -->
-    <aside id="desktop-sidebar" class="hidden md:flex flex-col w-64 bg-white border-r border-slate-200/60 shrink-0 sticky top-0 h-screen select-none">
+    <aside id="desktop-sidebar" class="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200/60 shrink-0 sticky top-0 h-screen select-none">
       
       <!-- Brand Logo -->
       <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-100 bg-white">
@@ -73,7 +73,7 @@
     <div class="flex flex-col flex-1 min-w-0">
       
       <!-- Mobile Top Bar -->
-      <header id="mobile-top-bar" class="md:hidden h-16 bg-white border-b border-slate-200/60 px-4 flex items-center justify-between sticky top-0 z-20 shadow-sm shadow-slate-100/50">
+      <header id="mobile-top-bar" class="lg:hidden h-16 bg-white border-b border-slate-200/60 px-4 flex items-center justify-between sticky top-0 z-20 shadow-sm shadow-slate-100/50">
         <div class="flex items-center gap-2.5">
           <div class="flex items-center justify-center w-8.5 h-8.5 rounded-xl bg-slate-900 text-white shadow-md">
             <mat-icon class="text-xs scale-90">auto_stories</mat-icon>
@@ -83,6 +83,8 @@
         
         <button 
           (click)="toggleMobileMenu()" 
+          type="button"
+          aria-label="Toggle navigation menu"
           class="p-2 -mr-1.5 rounded-xl text-slate-600 hover:bg-slate-100 active:bg-slate-200 transition-colors focus:outline-none"
         >
           <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
@@ -91,12 +93,12 @@
 
       <!-- Mobile Sliding Drawer -->
       @if (isMobileMenuOpen()) {
-        <div class="md:hidden fixed inset-0 z-40 flex animate-fade-in select-none">
+        <div class="lg:hidden fixed inset-0 z-40 flex animate-fade-in select-none">
           <!-- Backdrop overlay -->
           <button type="button" aria-label="Close menu" class="fixed inset-0 bg-slate-950/20 backdrop-blur-xs border-none w-full h-full cursor-default" (click)="closeMobileMenu()"></button>
           
           <!-- Drawer Panel -->
-          <div class="relative flex flex-col w-64 max-w-xs bg-white h-full shadow-2xl animate-slide-right">
+          <div class="relative flex flex-col w-[min(18rem,85vw)] bg-white h-full shadow-2xl animate-slide-right">
             <div class="h-16 flex items-center gap-2.5 px-6 border-b border-slate-100 justify-between bg-white">
               <div class="flex items-center gap-2.5">
                 <div class="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-900 text-white">
@@ -167,7 +169,7 @@
       }
 
       <!-- Main viewport area -->
-      <main class="flex-1 overflow-x-hidden">
+      <main class="flex-1 min-w-0 overflow-x-hidden">
         <router-outlet />
       </main>
 

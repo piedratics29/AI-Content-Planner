@@ -10,18 +10,18 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div id="prompts-wrapper" class="p-4 md:p-8 space-y-7 max-w-7xl mx-auto animate-fade-in select-none">
+    <div id="prompts-wrapper" class="p-3 sm:p-5 lg:p-8 space-y-5 sm:space-y-7 max-w-7xl mx-auto animate-fade-in select-none">
       
       <!-- Header -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-5.5">
-        <div>
+        <div class="min-w-0">
           <h1 class="text-2xl md:text-2xl font-display font-semibold text-slate-950 tracking-tight">AI Prompt Library</h1>
           <p class="text-xs text-slate-400 mt-1 font-sans">Store, tag, and customize writing templates. These inject directly into your content planner drafts.</p>
         </div>
-        <div>
+        <div class="shrink-0">
           <button 
             (click)="openAddModal()" 
-            class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium font-sans rounded-xl text-xs transition-all shadow-md shadow-slate-950/10 cursor-pointer"
+            class="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-medium font-sans rounded-xl text-xs whitespace-nowrap transition-all shadow-md shadow-slate-950/10 cursor-pointer"
           >
             <mat-icon class="scale-90 text-[18px] w-[18px] h-[18px]">add</mat-icon>
             <span>Create New Template</span>
@@ -64,19 +64,19 @@ import { MatIconModule } from '@angular/material/icon';
 
       <!-- Prompt Bento Grid -->
       @if (filteredPrompts().length === 0) {
-        <div class="p-16 bg-white border border-slate-200/60 rounded-2xl text-center text-slate-400 animate-fade-in select-none">
+        <div class="p-8 sm:p-16 bg-white border border-slate-200/60 rounded-2xl text-center text-slate-400 animate-fade-in select-none">
           <mat-icon class="text-slate-300 scale-125 mb-3 h-10 w-10 flex items-center justify-center mx-auto">settings_suggest</mat-icon>
           <h3 class="text-xs font-semibold text-slate-800">No prompt templates found</h3>
           <p class="text-[11px] text-slate-400 mt-1 max-w-sm mx-auto">Create a customized prompt or dial down your filters to reuse templates in writing operations.</p>
         </div>
       } @else {
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
           @for (prompt of filteredPrompts(); track prompt.id) {
-            <div class="bg-white border border-slate-200/60 rounded-2xl p-5 shadow-xs hover:shadow-sm md:hover:border-slate-350 transition-all flex flex-col justify-between space-y-4">
+            <div class="bg-white border border-slate-200/60 rounded-2xl p-4 sm:p-5 shadow-xs hover:shadow-sm md:hover:border-slate-350 transition-all flex flex-col justify-between space-y-4">
               
               <!-- Content Info -->
               <div class="space-y-3">
-                <div class="flex items-center justify-between">
+                <div class="flex items-start justify-between gap-2">
                   <!-- Category Badge -->
                   <span class="inline-flex px-2 py-0.5 text-[9px] font-bold text-slate-750 bg-slate-100 rounded-lg font-mono border border-slate-200/40 uppercase">
                     {{ prompt.category }}
@@ -133,12 +133,12 @@ import { MatIconModule } from '@angular/material/icon';
 
       <!-- CREATE/EDIT PROMPT MODAL -->
       @if (isModalOpen()) {
-        <div class="fixed inset-0 bg-slate-950/30 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in select-none">
-          <div class="bg-white rounded-2xl w-full max-w-lg border border-slate-200/60 shadow-2xl animate-scale-up overflow-hidden flex flex-col">
+        <div class="fixed inset-0 bg-slate-950/30 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 z-50 animate-fade-in select-none">
+          <div class="bg-white rounded-xl sm:rounded-2xl w-full max-w-lg max-h-[calc(100dvh-1rem)] border border-slate-200/60 shadow-2xl animate-scale-up overflow-y-auto flex flex-col">
             
             <!-- Header -->
-            <div class="px-5 py-4 bg-slate-50/50 border-b border-slate-150/50 flex items-center justify-between">
-              <div>
+            <div class="px-4 sm:px-5 py-4 bg-slate-50/50 border-b border-slate-150/50 flex items-start justify-between gap-3">
+              <div class="min-w-0">
                 <h3 class="text-base font-display font-semibold text-slate-900">
                   {{ isEditMode() ? 'Edit Prompt Template' : 'Add Prompt Template' }}
                 </h3>
@@ -150,7 +150,7 @@ import { MatIconModule } from '@angular/material/icon';
             </div>
 
             <!-- Form -->
-            <form [formGroup]="promptForm" (ngSubmit)="savePrompt()" class="p-5 space-y-4 bg-white text-xs">
+            <form [formGroup]="promptForm" (ngSubmit)="savePrompt()" class="p-4 sm:p-5 space-y-4 bg-white text-xs">
               
               <!-- Title -->
               <div>
@@ -183,7 +183,7 @@ import { MatIconModule } from '@angular/material/icon';
 
               <!-- Directive Instructions -->
               <div>
-                <div class="flex items-center justify-between mb-1.5">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1.5">
                   <span class="block text-[10px] font-semibold uppercase tracking-wider text-slate-400 font-mono">Prompt Directives</span>
                   <span class="text-[9px] text-slate-400 font-sans">Use <strong>[Topic]</strong> as placeholder fallback</span>
                 </div>
@@ -211,7 +211,7 @@ import { MatIconModule } from '@angular/material/icon';
               </div>
 
               <!-- Controls -->
-              <div class="flex justify-end gap-2 pt-4.5 border-t border-slate-150">
+              <div class="grid grid-cols-2 sm:flex sm:justify-end gap-2 pt-4.5 border-t border-slate-150">
                 <button 
                   type="button" 
                   (click)="closeModal()" 

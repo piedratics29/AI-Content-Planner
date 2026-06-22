@@ -1,0 +1,179 @@
+@if (authService.isLoggedIn()) {
+  <div id="app-shell" class="min-h-screen flex bg-slate-50 text-slate-800 font-sans antialiased">
+    
+    <!-- DESKTOP SIDEBAR -->
+    <aside id="desktop-sidebar" class="hidden md:flex flex-col w-64 bg-white border-r border-slate-200/60 shrink-0 sticky top-0 h-screen select-none">
+      
+      <!-- Brand Logo -->
+      <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-100 bg-white">
+        <div class="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900 text-white shadow-md shadow-slate-950/15">
+          <mat-icon class="text-base">auto_stories</mat-icon>
+        </div>
+        <div>
+          <span class="font-display font-semibold text-slate-900 tracking-tight leading-none block text-sm">Content Engine</span>
+          <span class="text-[10px] text-slate-400 font-mono tracking-wider uppercase mt-0.5 block">Gemini Edition</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 px-4 py-6 space-y-1.5">
+        <a 
+          routerLink="/dashboard" 
+          routerLinkActive="bg-slate-900 text-white font-medium shadow-md shadow-slate-950/10" 
+          [routerLinkActiveOptions]="{exact: true}"
+          class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 hover:translate-x-0.5 transition-all duration-200 cursor-pointer text-sm"
+        >
+          <mat-icon class="scale-90">dashboard</mat-icon>
+          <span class="font-display">Dashboard</span>
+        </a>
+        
+        <a 
+          routerLink="/calendar" 
+          routerLinkActive="bg-slate-900 text-white font-medium shadow-md shadow-slate-950/10" 
+          class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 hover:translate-x-0.5 transition-all duration-200 cursor-pointer text-sm"
+        >
+          <mat-icon class="scale-90">calendar_month</mat-icon>
+          <span class="font-display">Calendar Grid</span>
+        </a>
+
+        <a 
+          routerLink="/prompts" 
+          routerLinkActive="bg-slate-900 text-white font-medium shadow-md shadow-slate-950/10" 
+          class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 hover:translate-x-0.5 transition-all duration-200 cursor-pointer text-sm"
+        >
+          <mat-icon class="scale-90">psychology</mat-icon>
+          <span class="font-display">AI Templates</span>
+        </a>
+      </nav>
+
+      <!-- Active User Profile Box -->
+      @if (authService.currentUser(); as user) {
+        <div class="p-3.5 border border-slate-100 bg-slate-50/60 m-4 rounded-2xl">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center font-display font-medium text-xs shadow-inner">
+              {{ user.name.charAt(0).toUpperCase() }}
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-semibold text-slate-800 truncate leading-tight">{{ user.name }}</p>
+              <p class="text-[9px] text-slate-400 truncate leading-none mt-0.5 font-mono">{{ user.email }}</p>
+            </div>
+            <button 
+              (click)="logout()" 
+              title="Logout"
+              class="w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all cursor-pointer"
+            >
+              <mat-icon class="text-base">power_settings_new</mat-icon>
+            </button>
+          </div>
+        </div>
+      }
+    </aside>
+
+    <!-- MOBILE NAVIGATION MENU -->
+    <div class="flex flex-col flex-1 min-w-0">
+      
+      <!-- Mobile Top Bar -->
+      <header id="mobile-top-bar" class="md:hidden h-16 bg-white border-b border-slate-200/60 px-4 flex items-center justify-between sticky top-0 z-20 shadow-sm shadow-slate-100/50">
+        <div class="flex items-center gap-2.5">
+          <div class="flex items-center justify-center w-8.5 h-8.5 rounded-xl bg-slate-900 text-white shadow-md">
+            <mat-icon class="text-xs scale-90">auto_stories</mat-icon>
+          </div>
+          <span class="font-display font-bold text-slate-900 tracking-tight text-sm">Content Engine</span>
+        </div>
+        
+        <button 
+          (click)="toggleMobileMenu()" 
+          class="p-2 -mr-1.5 rounded-xl text-slate-600 hover:bg-slate-100 active:bg-slate-200 transition-colors focus:outline-none"
+        >
+          <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      </header>
+
+      <!-- Mobile Sliding Drawer -->
+      @if (isMobileMenuOpen()) {
+        <div class="md:hidden fixed inset-0 z-40 flex animate-fade-in select-none">
+          <!-- Backdrop overlay -->
+          <button type="button" aria-label="Close menu" class="fixed inset-0 bg-slate-950/20 backdrop-blur-xs border-none w-full h-full cursor-default" (click)="closeMobileMenu()"></button>
+          
+          <!-- Drawer Panel -->
+          <div class="relative flex flex-col w-64 max-w-xs bg-white h-full shadow-2xl animate-slide-right">
+            <div class="h-16 flex items-center gap-2.5 px-6 border-b border-slate-100 justify-between bg-white">
+              <div class="flex items-center gap-2.5">
+                <div class="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-900 text-white">
+                  <mat-icon class="text-sm">auto_stories</mat-icon>
+                </div>
+                <span class="font-display font-bold text-slate-900 text-sm">Content Engine</span>
+              </div>
+              <button (click)="closeMobileMenu()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-colors">
+                <mat-icon class="text-lg">close</mat-icon>
+              </button>
+            </div>
+            
+            <nav class="flex-1 px-4 py-6 space-y-1.5">
+              <a 
+                routerLink="/dashboard" 
+                routerLinkActive="bg-slate-900 text-white font-medium shadow-md shadow-slate-950/10" 
+                [routerLinkActiveOptions]="{exact: true}"
+                (click)="closeMobileMenu()"
+                class="flex items-center gap-3 px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm cursor-pointer transition-all"
+              >
+                <mat-icon class="scale-90">dashboard</mat-icon>
+                <span class="font-display">Dashboard</span>
+              </a>
+              
+              <a 
+                routerLink="/calendar" 
+                routerLinkActive="bg-slate-900 text-white font-medium shadow-md shadow-slate-950/10" 
+                (click)="closeMobileMenu()"
+                class="flex items-center gap-3 px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm cursor-pointer transition-all"
+              >
+                <mat-icon class="scale-90">calendar_month</mat-icon>
+                <span class="font-display">Calendar Grid</span>
+              </a>
+ 
+              <a 
+                routerLink="/prompts" 
+                routerLinkActive="bg-slate-900 text-white font-medium shadow-md shadow-slate-950/10" 
+                (click)="closeMobileMenu()"
+                class="flex items-center gap-3 px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm cursor-pointer transition-all"
+              >
+                <mat-icon class="scale-90">psychology</mat-icon>
+                <span class="font-display">AI Templates</span>
+              </a>
+            </nav>
+
+            <!-- User profile inside mobile drawer -->
+            @if (authService.currentUser(); as user) {
+              <div class="p-4 border-t border-slate-100 bg-slate-50/50 m-4 rounded-xl">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold text-sm">
+                    {{ user.name.charAt(0).toUpperCase() }}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs font-semibold text-slate-800 truncate leading-tight">{{ user.name }}</p>
+                    <p class="text-[9px] text-slate-400 truncate leading-none mt-0.5">{{ user.email }}</p>
+                  </div>
+                  <button 
+                    (click)="logout()" 
+                    class="w-7 h-7 rounded-md flex items-center justify-center text-slate-400 hover:text-red-600"
+                  >
+                    <mat-icon class="text-base">power_settings_new</mat-icon>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Main viewport area -->
+      <main class="flex-1 overflow-x-hidden">
+        <router-outlet />
+      </main>
+
+    </div>
+  </div>
+} @else {
+  <!-- Guest viewport -->
+  <router-outlet />
+}

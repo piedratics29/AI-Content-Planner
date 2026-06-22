@@ -1,0 +1,6 @@
+{
+  "name": "AI Content Planner",
+  "description": "An AI-powered content planning dashboard that helps users organize, schedule, and manage social media content efficiently.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
